@@ -15,17 +15,45 @@ url('{{.Site.Params.homepage.heroBackgroundImage}}'); ">
         role="button"
         >{{.Site.Params.homepage.heroCTAPrimaryText}}</a
       >
-      <a
+<!--       <a
         href="{{ .Site.Params.homepage.heroCTASecondaryUrl | relURL  }}"
         role="button"
         class="contrast outline"
         >{{.Site.Params.homepage.heroCTASecondaryText}}</a
-      >
+      > -->
     </div>
   </header>
 </section>
 {{ end }}
 
+{{- if not (.Site.Params.homepage.disablePortfolioSection) }}
+<section>
+  <hgroup class="text-center">
+    <h2>{{.Site.Params.homepage.portfolioTitle}}</h2>
+    <h3>{{.Site.Params.homepage.portfolioDescription}}</h3>
+  </hgroup>
+  <div class="container">
+    <div class="grid grid-post">
+      {{ range .Site.Params.homepage.portfolio }}
+      <a class="portfolio-post" href="{{.websiteUrl}}">
+        <figure >
+          <img
+            src="{{.imageUrl}}"
+            width="600"
+            height="400"
+            layout="responsive"
+            alt="{{.alt}}"
+          ></img>
+        </figure>
+        <hgroup class="text-center">
+          <h4>{{.description}}</h4>
+        </hgroup>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
 
 {{- if not (.Site.Params.homepage.disableBlogSection) }}
 <section>
@@ -89,35 +117,6 @@ url('{{.Site.Params.homepage.heroBackgroundImage}}'); ">
       <div class="container">
         {{.Site.Params.homepage.aboutContent}}
       </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-
-{{- if not (.Site.Params.homepage.disablePortfolioSection) }}
-<section>
-  <hgroup class="text-center">
-    <h2>{{.Site.Params.homepage.portfolioTitle}}</h2>
-    <h3>{{.Site.Params.homepage.portfolioDescription}}</h3>
-  </hgroup>
-  <div class="container">
-    <div class="grid grid-post">
-      {{ range .Site.Params.homepage.portfolio }}
-      <a class="portfolio-post" href="{{.websiteUrl}}">
-        <figure >
-          <img
-            src="{{.imageUrl}}"
-            width="600"
-            height="400"
-            layout="responsive"
-            alt="{{.alt}}"
-          ></img>
-        </figure>
-        <hgroup class="text-center">
-          <h4>{{.description}}</h4>
-        </hgroup>
-      </a>
-      {{ end }}
     </div>
   </div>
 </section>
